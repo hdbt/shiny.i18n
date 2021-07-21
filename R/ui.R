@@ -59,7 +59,7 @@ usei18n <- function(translator) {
   translations[[key_translation]] <- rownames(translations)
   shiny::tagList(
     shiny::tags$head(
-      shiny::tags$script(HTML(glue::glue("var i18n_translations = {toJSON(translations, auto_unbox = TRUE)}"))),
+      shiny::tags$script(HTML(gsub("[\\,\\n]","",HTML(glue::glue("var i18n_translations = {toJSON(translations, auto_unbox = TRUE)}"))))),
       shiny::tags$script(src = js_file)
     ),
     i18n_state(translator$key_translation)
